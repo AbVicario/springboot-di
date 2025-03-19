@@ -1,10 +1,10 @@
 package com.abel.springboot.di.app.springboot_di.models;
 
-public class Product {
+public class Product implements Cloneable {
     private Long id;
     private String name;
     private Long price;
-    
+
     public Product() {
     }
 
@@ -39,8 +39,18 @@ public class Product {
     }
 
     @Override
+    public Object clone() {
+
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException ex) {
+            return new Product(this.getId(), this.getName(), this.getPrice());
+        }
+    }
+
+    @Override
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
-    }  
+    }
 
 }
