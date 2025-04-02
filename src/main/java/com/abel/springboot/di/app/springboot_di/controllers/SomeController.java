@@ -8,14 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abel.springboot.di.app.springboot_di.models.Product;
-import com.abel.springboot.di.app.springboot_di.services.ProductServiceImpl;
+import com.abel.springboot.di.app.springboot_di.services.ProductService;
 
 @RestController
 @RequestMapping("/api")
 public class SomeController {
 
-    @SuppressWarnings("FieldMayBeFinal")
-    private ProductServiceImpl service = new ProductServiceImpl();
+    private ProductService service;
+
+    public SomeController(ProductService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public List<Product> list() {
@@ -26,6 +29,6 @@ public class SomeController {
     @GetMapping("/{id}")
 
     public Product show(@PathVariable Long id) {
-        return service.finById(id);
+        return service.findById(id);
     }
 }

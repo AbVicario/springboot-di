@@ -3,10 +3,16 @@ package com.abel.springboot.di.app.springboot_di.repositories;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.web.context.annotation.RequestScope;
+
 import com.abel.springboot.di.app.springboot_di.models.Product;
 
+@Repository
+@RequestScope
 public class ProductRepositoryImpl implements ProductRepository {
 
+    @SuppressWarnings("FieldMayBeFinal")
     private List<Product> data;
 
     public ProductRepositoryImpl() {
